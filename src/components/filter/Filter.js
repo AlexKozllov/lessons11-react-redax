@@ -10,8 +10,8 @@ const Filter = ({ setFilter, filter }) => {
   return <input type="text" onChange={onHandleChange} value={filter}></input>;
 };
 
-const mstp = (state) => {
+const mapStateToProps = (state) => {
   return { filter: state.filter };
 };
 
-export default connect(mstp, { setFilter })(Filter);
+export default connect(mapStateToProps, { setFilter })(Filter);

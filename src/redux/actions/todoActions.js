@@ -1,4 +1,4 @@
-import { ADDTASK, SETFILTER } from "../constants/todoConstants";
+import { ADDTASK, REMOVE, SETFILTER } from "../constants/todoConstants";
 
 export const addTask = (task) => {
   return {
@@ -11,5 +11,12 @@ export const setFilter = (filter) => {
   return {
     type: SETFILTER,
     payload: filter,
+  };
+};
+
+export const removeTask = (id) => {
+  return {
+    type: REMOVE,
+    payload: id,
   };
 };

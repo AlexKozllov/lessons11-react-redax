@@ -1,17 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
+import { removeTask } from "../../redux/actions/todoActions";
 
-const TodoList = ({ tasks }) => {
+const TodoList = ({ tasks, removeTask }) => {
+  const onHandleRemove = (e) => {
+    removeTask(e.target.id);
+  };
+
   return (
     <ul>
       {tasks.map((item) => (
-        <li key={item.id}>{item.text}</li>
+        <li key={item.id}>
+          <span>{item.text}</span>{" "}
+          <button type="button" id={item.id} onClick={onHandleRemove}>
+            Remove
+          </button>
+        </li>
       ))}
     </ul>
   );
 };
 
-const mstp = (state) => {
+const mapStateToProps = (state) => {
   return {
     tasks: state.tasks.filter((item) =>
       item.text.toLowerCase().includes(state.filter.toLowerCase())
@@ -19,4 +29,4 @@ const mstp = (state) => {
   };
 };
 
-export default connect(mstp)(TodoList);
+export default connect(mapStateToProps, { removeTask })(TodoList);
